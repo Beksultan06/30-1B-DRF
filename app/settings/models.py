@@ -31,13 +31,15 @@ class Product(models.Model):
         Category,
         on_delete=models.SET_NULL,
         related_name='category_product',
-        verbose_name='Категория продукта'    
+        verbose_name='Категория продукта',
+        blank=True, null=True
     )
     model = models.ForeignKey(
         ModelProduct,
         on_delete=models.SET_NULL,
         related_name='model_product',
-        verbose_name='Модель продукта'
+        verbose_name='Модель продукта',
+        blank=True, null=True
     )
     name = models.CharField(
         max_length=155,

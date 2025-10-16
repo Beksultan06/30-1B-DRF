@@ -1,7 +1,8 @@
 from rest_framework.generics import ListAPIView 
 
-from app.settings.models import Category, ModelProduct
-from app.settings.serilizers import CategorySerializer, ModelProductSerializer
+from app.settings.models import Category, ModelProduct, Product
+from app.settings.serilizers import CategorySerializer, ModelProductSerializer,\
+ProductSerializer
 
 class CategoryAPIView(ListAPIView):
     queryset = Category.objects.all()
@@ -10,3 +11,7 @@ class CategoryAPIView(ListAPIView):
 class ModelProductAPI(ListAPIView):
     queryset = ModelProduct.objects.all()
     serializer_class = ModelProductSerializer
+
+class ProductAPI(ListAPIView):
+    queryset = Product.objects.all()
+    serializer_class = ProductSerializer
