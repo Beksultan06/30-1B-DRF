@@ -6,8 +6,13 @@ from app.settings.models import Category, ModelProduct, ImageProduct, Product
 
 class CategorySerializer(serializers.ModelSerializer):
     class Meta:
-        mdoel = Category
+        model = Category
         fields = ['id', 'name']
+
+    def validate_name(self, value):
+        if len(value) < 3:
+            raise serializers.ValidationError("Название категории должно быть не короче 3 символов!")
+        return value
 
 class ModelProductSerializer(serializers.ModelSerializer):
     class Meta:
