@@ -1,5 +1,7 @@
 from rest_framework.generics import ListAPIView, CreateAPIView, UpdateAPIView,\
 RetrieveAPIView, DestroyAPIView
+from rest_framework.viewsets import GenericViewSet
+from rest_framework import mixins
 
 from app.settings.models import Category, ModelProduct, Product
 from app.settings.serilizers import CategorySerializer, ModelProductSerializer,\
@@ -25,7 +27,12 @@ class CategoryDeleteAPIView(DestroyAPIView):
     queryset = Category.objects.all()
     serializer_class = CategorySerializer
 
-class ModelProductAPI(ListAPIView):
+class ModelProductAPI(GenericViewSet,
+                    mixins.ListModelMixin,
+                    mixins.CreateModelMixin,
+                    mixins.RetrieveModelMixin,
+                    mixins.UpdateModelMixin,
+                    mixins.DestroyModelMixin):
     queryset = ModelProduct.objects.all()
     serializer_class = ModelProductSerializer
 

@@ -1,9 +1,13 @@
 from django.urls import path
+from rest_framework.routers import DefaultRouter
 
 from app.settings.views import (
-    CategoryAPIView, ModelProductAPI, ProductAPI, CategoryCreateAPIView,
-    CategoryUpdateAPIView, CategoryDetailAPIView, CategoryDeleteAPIView
+    CategoryAPIView, ProductAPI, CategoryCreateAPIView, ModelProductAPI,
+    CategoryUpdateAPIView, CategoryDetailAPIView, CategoryDeleteAPIView, 
 )
+
+router = DefaultRouter()
+router.register("product-api", ModelProductAPI, basename='model-product')
 
 urlpatterns = [
     path("category", CategoryAPIView.as_view(), name='category'),
@@ -11,9 +15,8 @@ urlpatterns = [
     path("category-update/<int:pk>/", CategoryUpdateAPIView.as_view(), name='category-update'),
     path("category-detail/<int:pk>/", CategoryDetailAPIView.as_view(), name='category-detail'),
     path("category-delete/<int:pk>/", CategoryDeleteAPIView.as_view(), name='category-delete'),
-    path("model", ModelProductAPI.as_view(), name='model'),
     path("product", ProductAPI.as_view(), name='product'),
 ]
 
 
-"data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD..."
+urlpatterns += router.urls
