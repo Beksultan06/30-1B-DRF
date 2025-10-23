@@ -36,7 +36,11 @@ class ModelProductAPI(GenericViewSet,
     queryset = ModelProduct.objects.all()
     serializer_class = ModelProductSerializer
 
-class ProductAPI(ListAPIView):
+class ProductAPI(GenericViewSet,
+                mixins.ListModelMixin,
+                mixins.CreateModelMixin,
+                mixins.UpdateModelMixin,
+                mixins.RetrieveModelMixin,
+                mixins.DestroyModelMixin):
     queryset = Product.objects.all()
     serializer_class = ProductSerializer
-
