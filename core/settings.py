@@ -35,6 +35,7 @@ INSTALLED_APPS = [
     'django_filters',
 
     'app.settings',
+    'app.users',
 ]
 
 MIDDLEWARE = [
@@ -131,4 +132,9 @@ REST_FRAMEWORK = {
         'rest_framework.filters.SearchFilter',
         'rest_framework.filters.OrderingFilter',
     ],
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework.authentication.SessionAuthentication',
+    ],
 }
+
+AUTH_USER_MODEL = 'users.User'
