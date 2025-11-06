@@ -33,6 +33,7 @@ INSTALLED_APPS = [
     # rest
     'rest_framework',
     'django_filters',
+    'drf_yasg',
 
     'app.settings',
     'app.users',
